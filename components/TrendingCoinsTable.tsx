@@ -43,7 +43,7 @@ const TrendingCoinsTable = () => {
                                             {console.log(formatCurrency(item.data.price))}
 
                                 return (
-                                    <tr key={item.id} className="bg-neutral-primary border-b border-default">
+                                    <tr key={item.id} className="bg-neutral-primary border-t border-default">
                                         <td className="p-2">
                                             <Link href={`/coins/${item.id}`}>
                                                 <Image className="inline me-2" src={item?.large} alt={item?.name} width={25} height={25} />
