@@ -137,26 +137,7 @@ interface ExtendedPriceData {
   timestamp?: number;
 }
 
-interface WebSocketMessage {
-  type?: string;
-  c?: string;
-  ch?: string;
-  i?: string;
-  p?: number;
-  pp?: number;
-  pu?: number;
-  m?: number;
-  v?: number;
-  vo?: number;
-  o?: number;
-  h?: number;
-  l?: number;
-  t?: number;
-  to?: number;
-  ty?: string;
-  channel?: string;
-  identifier?: string;
-}
+
 
 interface CoinDetailsData {
   id: string;
@@ -207,22 +188,6 @@ interface CoinDetailsData {
   tickers: Ticker[];
 }
 
-interface LiveDataProps {
-  coinId: string;
-  poolId: string;
-  coin: CoinDetailsData;
-  coinOHLCData?: OHLCData[];
-  children?: React.ReactNode;
-}
-
-interface LiveCoinHeaderProps {
-  name: string;
-  image: string;
-  livePrice?: number;
-  livePriceChangePercentage24h: number;
-  priceChangePercentage30d: number;
-  priceChange24h: number;
-}
 
 interface Category {
   name: string;
@@ -232,39 +197,7 @@ interface Category {
   volume_24h: number;
 }
 
-interface UseCoinGeckoWebSocketProps {
-  coinId: string;
-  poolId: string;
-  liveInterval?: '1s' | '1m';
-}
 
-interface UseCoinGeckoWebSocketReturn {
-  price: ExtendedPriceData | null;
-  trades: Trade[];
-  ohlcv: OHLCData | null;
-  isConnected: boolean;
-}
-
-interface DataTableColumn<T> {
-  header: React.ReactNode;
-  cell: (row: T, index: number) => React.ReactNode;
-  headClassName?: string;
-  cellClassName?: string;
-}
-
-interface DataTableProps<T> {
-  columns: DataTableColumn<T>[];
-  data: T[];
-  rowKey: (row: T, index: number) => React.Key;
-  tableClassName?: string;
-  headerClassName?: string;
-  headerRowClassName?: string;
-  headerCellClassName?: string;
-  bodyRowClassName?: string;
-  bodyCellClassName?: string;
-}
-
-type ButtonSize = 'default' | 'sm' | 'lg' | 'icon' | 'icon-sm' | 'icon-lg';
 
 type PaginationLinkProps = {
   isActive?: boolean;
@@ -289,15 +222,5 @@ interface SearchItemProps {
   isActiveName: boolean;
 }
 
-interface CoinGeckoErrorBody {
-  error?: string;
-}
-
 type QueryParams = Record<string, string | number | boolean | undefined>;
 
-interface PoolData {
-  id: string;
-  address: string;
-  name: string;
-  network: string;
-}
