@@ -16,13 +16,12 @@ const Theme = () => {
 
     if (!mounted) return null
     
-    console.log(theme)
     return (
         <>
 
             {theme !== "dark" ? <button onClick={() => setTheme("dark")} className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                 <MoonIcon />
-            </button> : <>  <button onClick={() => setTheme("dark")} className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+            </button> : <>  <button onClick={() => setTheme("light")} className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
                 <SunIcon />
 
             </button>

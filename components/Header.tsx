@@ -6,7 +6,7 @@ import Theme from "./Theme"
 
 const Header = () => {
     return (
-        <header className=" px-8 py-6 sticky top-0 z-10 flex justify-between border-b border-gray-300 bg-white dark:bg-black  mb-3">
+        <header className=" px-8 py-6 sticky top-0 z-10 flex justify-between border-b border-gray-300  dark:bg-black dark:text-white mb-3">
             <div className="flex items-center gap-x-3">
                 <Link href="/">
                     <Image src="/cryptoTracker_logo.png" alt="image not loaded"

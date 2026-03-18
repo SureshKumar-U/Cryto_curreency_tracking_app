@@ -30,7 +30,7 @@ const TrendingCoinsTable = () => {
         <div>
             <span className="font-bold ">Trending Coins</span>
             <div className="relative overflow-x-auto mt-2  shadow-lg rounded-md border-none">
-                <table className="w-full text-sm text-left rtl:text-right text-body border-gray-200">
+                <table className="w-full text-sm text-left rtl:text-right text-body border-gray-200  bg:red-800">
                     <thead className="capitalize  bg-black text-white border-b rounded-base border-gray-300">
                         <tr>
                             <th scope="col" className="px-2 py-3 font-bold">
