@@ -5,32 +5,33 @@ import { formatCurrency, formatPercentage } from "@/lib/utils"
 import Image from "next/image"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
+import { Suspense } from "react"
+
+
+const page = () => {
+    return (
+        <>
+            <Suspense fallback={<FallBack />}>
+                <AllCoins />
+            </Suspense>
+
+        </>
+    )
+}
 
 
 const AllCoins = () => {
     const searParams = useSearchParams()
     const pageNo = Number(searParams.get("page") || "1")
-    const { data: coinsData, loading } = useFetch<CoinMarketData[]>(`coins/markets?vs_currency=usd&order=market_cap_desc&price_change_percentage=24h&per_page=10&page=${pageNo}`)
+    const { data: coinsData } = useFetch<CoinMarketData[]>(`coins/markets?vs_currency=usd&order=market_cap_desc&price_change_percentage=24h&per_page=10&page=${pageNo}`)
 
     const buildPageHref = (page: number) => `/coins?page=${page}`
 
-    if (loading) {
-        return (
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center">
-                <div className="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
-                    <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-600 border-t-transparent mx-auto mb-6"></div>
-                    <p className="text-gray-700 font-medium text-lg">Loading All coins...</p>
-                    <div className="mt-4 flex justify-center space-x-1">
-                        <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                        <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
-                    </div>
-                </div>
-            </div>
-        )
-    }
+
     return (
         <>
+
+
             <div className="container mx-auto px-2 py-3">
                 <p className="font-bold mt-2 ">All Coins</p>
                 <div className="relative overflow-x-auto mt-2  shadow-lg rounded-md border-none">
@@ -67,14 +68,14 @@ const AllCoins = () => {
                                                 </Link>
                                             </td>
                                             <td className="p-2">
-                                     
-                                                    <Link href={`/coins/${coin.id}`}>
+
+                                                <Link href={`/coins/${coin.id}`}>
                                                     <Image className="inline me-3" src={coin.image} alt={coin.name} width={25} height={25} />
                                                     <span>
                                                         {coin.name} ({coin.symbol.toUpperCase()})
                                                     </span>
-                                                    </Link>
-                                 
+                                                </Link>
+
                                             </td>
                                             <td className="p-2">
                                                 <span>{formatCurrency(coin.current_price)}</span>
@@ -126,8 +127,28 @@ const AllCoins = () => {
 
 
             </div>
+
+
         </>
     )
 }
 
-export default AllCoins
+export default page
+
+
+const FallBack = () => {
+    return (
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center">
+            <div className="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
+                <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-600 border-t-transparent mx-auto mb-6"></div>
+                <p className="text-gray-700 font-medium text-lg">Loading All coins...</p>
+                <div className="mt-4 flex justify-center space-x-1">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                </div>
+            </div>
+        </div>
+    )
+
+}
